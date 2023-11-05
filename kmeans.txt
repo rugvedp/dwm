@@ -1,0 +1,83 @@
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt 
+iris_dataset = load_iris()
+X = iris.data
+sentosa_sepal_length = []
+sentosa_sepal_width = []
+versicolor_sepal_length = []
+versicolor_sepal_width = []
+verginica_sepal_length = []
+verginica_sepal_width = []
+sentosa_petal_length = []
+sentosa_petal_width = []
+versicolor_petal_length = []
+versicolor_petal_width = []
+verginica_petal_length = []
+verginica_petal_width = []
+
+for i in range(len(iris_dataset['target'])):
+    if iris_dataset['target'][i] == 0:
+        sentosa_sepal_length.append(iris_dataset['data'][i][0])
+        sentosa_sepal_width.append(iris_dataset['data'][i][1])
+        sentosa_petal_length.append(iris_dataset['data'][i][2])
+        sentosa_petal_width.append(iris_dataset['data'][i][3])
+    elif iris_dataset['target'][i] == 1:
+        versicolor_sepal_length.append(iris_dataset['data'][i][0])
+        versicolor_sepal_width.append(iris_dataset['data'][i][1])
+        versicolor_petal_length.append(iris_dataset['data'][i][2])
+        versicolor_petal_width.append(iris_dataset['data'][i][3])
+    elif iris_dataset['target'][i] == 2:
+        verginica_sepal_length.append(iris_dataset['data'][i][0])
+        verginica_sepal_width.append(iris_dataset['data'][i][1])
+        verginica_petal_length.append(iris_dataset['data'][i][2])
+        verginica_petal_width.append(iris_dataset['data'][i][3])
+
+plt.scatter(sentosa_sepal_length, sentosa_sepal_width, label='Setosa')
+plt.scatter(versicolor_sepal_length, versicolor_sepal_width, label='Versicolor')
+plt.scatter(verginica_sepal_length, verginica_sepal_width, label='Verginica')
+
+# Add labels and legend
+plt.xlabel('Sepal Length')
+plt.ylabel('Sepal Width')
+plt.legend()
+
+# Show the plot
+plt.show()
+plt.scatter(sentosa_petal_length, sentosa_petal_width, label='Setosa')
+plt.scatter(versicolor_petal_length, versicolor_petal_width, label='Versicolor')
+plt.scatter(verginica_petal_length, verginica_petal_width, label='Verginica')
+
+# Add labels and legend
+plt.xlabel('petal Length')
+plt.ylabel('petal Width')
+plt.legend()
+
+plt.show()
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+
+sepal_length_width = [[data[0], data[1]] for data in iris_dataset['data']]
+
+# Perform k-means clustering
+kmeans = KMeans(n_clusters=3)
+kmeans.fit(sepal_length_width)
+labels = kmeans.labels_
+
+# Plot the clusters
+plt.scatter([data[0] for data in sepal_length_width], [data[1] for data in sepal_length_width], c=labels)
+plt.xlabel('Sepal Length')
+plt.ylabel('Sepal Width')
+plt.title('K-Means Clustering of Iris Dataset')
+plt.show()
+# Perform k-means clustering
+kmeans = KMeans(n_clusters=3)
+kmeans.fit(petal_length_width)
+labels = kmeans.labels_
+
+# Plot the clusters
+plt.scatter([data[0] for data in petal_length_width], [data[1] for data in petal_length_width], c=labels)
+plt.xlabel('petal Length')
+plt.ylabel('petal Width')
+plt.title('K-Means Clustering of Iris Dataset')
+plt.show()

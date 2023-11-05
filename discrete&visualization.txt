@@ -1,0 +1,45 @@
+#Discretization
+# Taking input from a user
+input_data = [int(item) for item in input("Enter the data items: ").split()]
+
+# Storing length of the user entered data
+n = len(input_data)
+
+# sorting data for better categorization
+input_data.sort()
+
+# Taking input of bins or catogery user want to devide it's data
+bins = int(input("Enter the numer of Bins or category :-"))
+
+# Printing Each bin orcategory of data
+c = 1
+for i in range(0, n, n // bins):
+    print(f" catogery/bins {c} - {input_data[i:i + n // bins]}")
+    c += 1
+
+
+
+
+---------------------------------------------------------------
+
+#Visualization
+
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+
+# Extract the data
+X = iris.data
+
+# Create a boxplot
+plt.boxplot(X)
+
+# Set the title and labels
+plt.title("Box Plot of Iris Data")
+plt.xlabel("Feature")
+plt.ylabel("Value")
+
+# Show the plot
+plt.show()
